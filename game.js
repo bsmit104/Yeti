@@ -1,6 +1,6 @@
-class gameplay extends Phaser.Scene {
+class Gameplay extends Phaser.Scene {
     constructor() {
-        super('level1');
+        super('gameplay');
     }
 
     preload() {
@@ -49,11 +49,15 @@ class gameplay extends Phaser.Scene {
             { x: 100 * 3, y: 200 * 3 },
             { x: 300 * 3, y: 200 * 3 },
             { x: 100 * 3, y: 100 * 3 },
-            { x: 100 * 3, y: 300 * 3 }
+            { x: 100 * 3, y: 300 * 3 }, 
+            { x: 300 * 3, y: 100 * 3 },
+            { x: 200 * 3, y: 100 * 3 },
+            { x: 200 * 3, y: 150 * 3 },
+            { x: 150 * 3, y: 200 * 3 }
         ];
 
         const penguinGroup = this.add.group();
-        const changeDirectionIntervals = [1000, 1500, 2000, 2500];
+        const changeDirectionIntervals = [1000, 1500, 2000, 2500, 500, 1000, 100, 1000];
 
         for (let i = 0; i < spritePositions.length; i++) {
             const position = spritePositions[i];
@@ -173,6 +177,49 @@ class gameplay extends Phaser.Scene {
     }
 }
 
+class Title extends Phaser.Scene {
+    constructor() {
+        super('title');
+    }
+    preload() {
+        this.load.path = "./assets/";
+        this.load.image('title', 'title.png');
+    }
+    create() {
+        this.cameras.main.setBackgroundColor('#8fd3f4');
+        const centerX = this.cameras.main.width / 2;
+        const centerY = this.cameras.main.height / 2;
+        this.titleob = this.add.image(
+            centerX,//x
+            centerY - 200,//y
+            'title',//imagename
+            )
+            this.titleob.setScale(4) //resize
+        const playText = this.add.text(centerX, centerY, 'PLAY', { fontSize: '100px', fill: '#fff' });
+        playText.setInteractive();
+        playText.on('pointerover', () => {
+            playText.setStyle({ fill: '#3944BC' });
+        });
+        playText.on('pointerout', () => {
+            playText.setStyle({ fill: '#fff' });
+        });
+        playText.on('pointerdown', () => {
+            this.scene.start('gameplay');
+        });
+        this.tweens.add({
+            targets: this.titleob,
+            x: '+=' + 100,
+            repeat: 2,
+            yoyo: true,
+            ease: 'Sine.inOut',
+            duration: 100
+        });
+    }
+    update() {
+
+    }
+}
+
 var map;
 var smap;
 var player;
@@ -211,7 +258,7 @@ var config = {
     input: {
         activePointers: 5
     },
-    scene: [gameplay]
+    scene: [Title, Gameplay]
 };
 
 var game = new Phaser.Game(config);
