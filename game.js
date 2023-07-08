@@ -24,7 +24,7 @@ class Gameplay extends Phaser.Scene {
             loop: true
         });
 
-        
+
         this.score = 0;
         // Create the score text
         this.scoreText = this.add.text(10, 10, 'Score: 0', { fontSize: '24px', fill: '#FFFFFF' });
@@ -264,14 +264,18 @@ class Gameover extends Phaser.Scene {
     }
 
     create() {
-        const score = this.game.config.globals.score || 0;
+        this.cameras.main.setBackgroundColor('#8fd3f4');
 
+        const centerX = this.cameras.main.width / 2;
+        const centerY = this.cameras.main.height / 2;
+        //const score = this.game.config.globals.score || 0;
+        const playText = this.add.text(centerX - 200, centerY, 'Score: ' + this.score, { fontSize: '50px', fill: '#fff' });
         // Display the score in the "Game Over" scene
-        document.getElementById('score').textContent = 'Score: ' + score;
+        //document.getElementById('score').textContent = 'Score: ' + score;
 
         // Display the "Game Over" message
-        document.getElementById('game-container').style.display = 'none';
-        document.getElementById('game-over').style.display = 'block';
+        //document.getElementById('game-container').style.display = 'none';
+        //document.getElementById('game-over').style.display = 'block';
     }
 }
 
