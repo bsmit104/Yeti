@@ -5,10 +5,68 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Yeti Game</title>
+    <style>
+        #game-container {
+            display: inline-block;
+            vertical-align: top;
+            margin-left: -200px;
+        }
+        #game-info {
+            display: inline-block;
+            margin-right: 200px;
+            margin-left: 400px; /* Adjust the margin value as desired */
+            vertical-align: top;
+        }
+        #score {
+            color: #FFFFFF; /* White color */
+            font-size: 24px;
+            /* Add any other custom styling you want */
+        }
+        #timer {
+            color: #FFFFFF; /* White color */
+            font-size: 24px;
+            /* Add any other custom styling you want */
+        }
+        body {
+            background-color: #8fd3f4;
+        }
+    </style>
+    <script src="phaser.js"></script>
+    <script src="game.js"></script>
+</head>
+<body>
+    <div id="game-container"></div>
+    <div id="game-info">
+        <div id="score">Score: 0</div>
+        <div id="timer">Time Left: 2:00</div>
+    </div>
+</body>
+</html>
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Yeti Game</title>
     <script src="phaser.js"></script>
     <script src="game.js"></script>
     <style>
+        #game-container {
+            display: inline-block;
+            vertical-align: top;
+        }
+        #game-info {
+            display: inline-block;
+            margin-left: 20px;
+            vertical-align: top;
+        }
         #score {
+            color: #FFFFFF; /* White color */
+            font-size: 24px;
+            /* Add any other custom styling you want */
+        }
+        #timer {
             color: #FFFFFF; /* White color */
             font-size: 24px;
             /* Add any other custom styling you want */
@@ -19,7 +77,10 @@
     </style>
 </head>
 <body>
-    <!-- <div id="score"></div> -->
     <div id="score">Score: 0</div>
+    <div id="timer">Time Left: 2:00</div>
+    <div id="game-container"></div>
+    <div id="game-over" style="display: none;">
+        <h1>Game Over</h1>
 </body>
-</html>
+</html> -->

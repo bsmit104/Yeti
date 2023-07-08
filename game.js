@@ -13,6 +13,18 @@ class Gameplay extends Phaser.Scene {
     }
 
     create() {
+        this.startTime = new Date();
+        this.timer = 120; // 2 minutes in seconds
+
+        // Update the timer every second
+        this.time.addEvent({
+            delay: 1000,
+            callback: this.updateTimer,
+            callbackScope: this,
+            loop: true
+        });
+
+        
         this.score = 0;
         // Create the score text
         this.scoreText = this.add.text(10, 10, 'Score: 0', { fontSize: '24px', fill: '#FFFFFF' });
@@ -143,6 +155,32 @@ class Gameplay extends Phaser.Scene {
         });
     }
 
+    updateTimer() {
+        const currentTime = new Date();
+        const elapsedTime = Math.floor((currentTime - this.startTime) / 1000); // Elapsed time in seconds
+        const remainingTime = Math.max(this.timer - elapsedTime, 0);
+
+        const minutes = Math.floor(remainingTime / 60);
+        const seconds = remainingTime % 60;
+
+        // Format the time as mm:ss
+        const formattedTime = minutes.toString().padStart(2, '0') + ':' + seconds.toString().padStart(2, '0');
+
+        // Update the timer text in the HTML
+        document.getElementById('timer').textContent = 'Time Left: ' + formattedTime;
+
+        // // Check if the timer has reached zero
+        // if (remainingTime === 0) {
+        //     // Transition to the "Game Over" scene
+        //     this.scene.start('gameOver');
+        // }
+        // Check if the timer has reached zero
+        if (remainingTime === 0) {
+            // Transition to the "Game Over" scene and pass the score as a parameter
+            this.scene.start('gameOver', { score: this.score });
+        }
+    }
+
     update() {
         // Update the score logic
         // // For example, increment the score by 1 each update
@@ -220,6 +258,23 @@ class Title extends Phaser.Scene {
     }
 }
 
+class Gameover extends Phaser.Scene {
+    constructor() {
+        super('gameOver');
+    }
+
+    create() {
+        const score = this.game.config.globals.score || 0;
+
+        // Display the score in the "Game Over" scene
+        document.getElementById('score').textContent = 'Score: ' + score;
+
+        // Display the "Game Over" message
+        document.getElementById('game-container').style.display = 'none';
+        document.getElementById('game-over').style.display = 'block';
+    }
+}
+
 var map;
 var smap;
 var player;
@@ -258,7 +313,7 @@ var config = {
     input: {
         activePointers: 5
     },
-    scene: [Title, Gameplay]
+    scene: [Title, Gameplay, Gameover]
 };
 
 var game = new Phaser.Game(config);
