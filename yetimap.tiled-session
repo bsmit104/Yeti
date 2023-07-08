@@ -1,0 +1,64 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "yeti.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "": {
+            "scaleInEditor": 1
+        },
+        "#pacmap": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "yeti.tmx": {
+            "scale": 2.225271739130435,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 184.2471608254976,
+                "y": 184.02246916595433
+            }
+        },
+        "yeti.tmx#pacmap": {
+            "scaleInDock": 1
+        },
+        "yetimap.tmx": {
+            "scale": 2.225271739130435,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 239.52130907314688,
+                "y": 184.02246916595433
+            }
+        },
+        "yetimap.tmx#pacmap": {
+            "scaleInDock": 1
+        }
+    },
+    "last.exportedFilePath": "C:/Users/Brayden/OneDrive/Desktop/Yeti Kong/YetiKong/assets",
+    "last.imagePath": "C:/Users/Brayden/OneDrive/Desktop/Yeti Kong/YetiKong",
+    "map.height": 23,
+    "map.lastUsedExportFilter": "All Files (*)",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 23,
+    "openFiles": [
+        "yetimap.tmx",
+        "yeti.tmx"
+    ],
+    "project": "yetimap.tiled-project",
+    "recentFiles": [
+        "yetimap.tmx",
+        "yeti.tmx"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}
