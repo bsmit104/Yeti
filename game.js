@@ -25,11 +25,11 @@ class Gameplay extends Phaser.Scene {
         });
 
 
-        this.score = 0;
+        score = 0;
         // Create the score text
         this.scoreText = this.add.text(10, 10, 'Score: 0', { fontSize: '24px', fill: '#FFFFFF' });
         // Display the initial score in the HTML <div> element
-        document.getElementById('score').textContent = 'Score: ' + this.score;
+        document.getElementById('score').textContent = 'Score: ' + score;
 
         map = this.make.tilemap({ key: 'mapp' });
         var groundTiles = map.addTilesetImage('pacmap');
@@ -62,9 +62,9 @@ class Gameplay extends Phaser.Scene {
             { x: 300 * 3, y: 200 * 3 },
             { x: 100 * 3, y: 100 * 3 },
             { x: 100 * 3, y: 300 * 3 }, 
-            { x: 300 * 3, y: 100 * 3 },
+            { x: 300 * 3, y: 150 * 3 },
             { x: 200 * 3, y: 100 * 3 },
-            { x: 200 * 3, y: 150 * 3 },
+            { x: 200 * 3, y: 300 * 3 },
             { x: 150 * 3, y: 200 * 3 }
         ];
 
@@ -127,26 +127,26 @@ class Gameplay extends Phaser.Scene {
     handleCollision(player, penguin) {
         if (penguin.isInvulnerable) {
             // Deduct points from the player
-            this.score -= 10;
-            if (this.score < 0) {
-                this.score = 0; // Ensure the score doesn't go below zero
+            score -= 10;
+            if (score < 0) {
+                score = 0; // Ensure the score doesn't go below zero
             }
 
             // Update the score text
-            this.scoreText.setText('Score: ' + this.score);
+            this.scoreText.setText('Score: ' + score);
         }
         else {
             penguin.setTint(0xff0000);
             // Increase the score by 10
-            this.score += 10;
+            score += 10;
             // Update the score text
-            this.scoreText.setText('Score: ' + this.score);
+            this.scoreText.setText('Score: ' + score);
         }
         penguin.body.setVelocity(0, 0);
         penguin.setPosition(penguin.originalPosition.x, penguin.originalPosition.y);
 
         // Set the penguin to be invulnerable for 2 seconds
-        this.time.delayedCall(1000, () => {
+        this.time.delayedCall(500, () => {
             penguin.isInvulnerable = true;
         });
         this.time.delayedCall(5000, () => {
@@ -177,7 +177,7 @@ class Gameplay extends Phaser.Scene {
         // Check if the timer has reached zero
         if (remainingTime === 0) {
             // Transition to the "Game Over" scene and pass the score as a parameter
-            this.scene.start('gameOver', { score: this.score });
+            this.scene.start('gameOver', { score: score });
         }
     }
 
@@ -188,7 +188,7 @@ class Gameplay extends Phaser.Scene {
         // Update the score text
         //this.scoreText.setText('Score: ' + this.score);
         // Update the score value in the HTML <div> element
-        document.getElementById('score').textContent = 'Score: ' + this.score;
+        document.getElementById('score').textContent = 'Score: ' + score;
 
 
         if (cursors.left.isDown) {
@@ -224,6 +224,7 @@ class Title extends Phaser.Scene {
         this.load.image('title', 'title.png');
     }
     create() {
+        score = 0;
         this.cameras.main.setBackgroundColor('#8fd3f4');
         const centerX = this.cameras.main.width / 2;
         const centerY = this.cameras.main.height / 2;
@@ -269,7 +270,7 @@ class Gameover extends Phaser.Scene {
         const centerX = this.cameras.main.width / 2;
         const centerY = this.cameras.main.height / 2;
         //const score = this.game.config.globals.score || 0;
-        const playText = this.add.text(centerX - 200, centerY, 'Score: ' + this.score, { fontSize: '50px', fill: '#fff' });
+        const playText = this.add.text(centerX - 200, centerY, 'Score: ' + score, { fontSize: '50px', fill: '#fff' });
         // Display the score in the "Game Over" scene
         //document.getElementById('score').textContent = 'Score: ' + score;
 
@@ -288,6 +289,7 @@ var groundLayer;
 var wallLayer;
 var miscLayer;
 var sgroundLayer;
+let score = 0;
 let cursors;
 var speed = 100;
 let vel = 250;
