@@ -1,4 +1,4 @@
-# YetiKong
+# Yeti
 
 How to play: Use arrow keys to move! Hit penguins for points but watch out for red ones or you'll lose points!  
   
