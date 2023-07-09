@@ -118,7 +118,7 @@ class Gameplay extends Phaser.Scene {
         penguin.setTint(0xff0000);
         // Set the penguin to be invulnerable for 2 seconds
         penguin.isInvulnerable = true;
-        this.time.delayedCall(5000, () => {
+        this.time.delayedCall(6000, () => {
             penguin.isInvulnerable = false;
             penguin.clearTint();
         });
@@ -234,7 +234,7 @@ class Title extends Phaser.Scene {
             'title',//imagename
             )
             this.titleob.setScale(4) //resize
-        const playText = this.add.text(centerX, centerY, 'PLAY', { fontSize: '100px', fill: '#fff' });
+        const playText = this.add.text(centerX - 130, centerY + 50, 'PLAY', { fontSize: '100px', fill: '#fff' });
         playText.setInteractive();
         playText.on('pointerover', () => {
             playText.setStyle({ fill: '#3944BC' });
@@ -270,7 +270,19 @@ class Gameover extends Phaser.Scene {
         const centerX = this.cameras.main.width / 2;
         const centerY = this.cameras.main.height / 2;
         //const score = this.game.config.globals.score || 0;
-        const playText = this.add.text(centerX - 200, centerY, 'Score: ' + score, { fontSize: '50px', fill: '#fff' });
+        const playText = this.add.text(centerX - 200, centerY - 50, 'Score: ' + score, { fontSize: '50px', fill: '#fff' });
+
+        const playText2 = this.add.text(centerX - 200, centerY + 50, 'PLAY AGAIN', { fontSize: '50px', fill: '#fff' });
+        playText2.setInteractive();
+        playText2.on('pointerover', () => {
+            playText2.setStyle({ fill: '#3944BC' });
+        });
+        playText2.on('pointerout', () => {
+            playText2.setStyle({ fill: '#fff' });
+        });
+        playText2.on('pointerdown', () => {
+            this.scene.start('gameplay');
+        });
         // Display the score in the "Game Over" scene
         //document.getElementById('score').textContent = 'Score: ' + score;
 
